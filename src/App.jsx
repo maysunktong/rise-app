@@ -13,7 +13,7 @@ function App() {
         <li onClick={() => setCurrentPage(null)}>Home</li>
         <li onClick={() => setCurrentPage(<HealthTracker />)}>Health Tracker</li>
         <li onClick={() => setCurrentPage(<WorkoutRoom />)}>Fitness Room</li>
-        <li onClick={() => setCurrentPage(<HireTrainers />)}>Nutrition</li>        
+        <li onClick={() => setCurrentPage(<HireTrainers />)}>Hire trainers</li>        
       </nav>
 
       {currentPage}
