@@ -1,5 +1,7 @@
+import Tracker from "../../components/Tracker";
+
 const HealthTracker = () => {
-  return <div>health tracker</div>;
+  return <Tracker />;
 };
 
 export default HealthTracker;
