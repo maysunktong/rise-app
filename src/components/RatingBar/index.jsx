@@ -4,18 +4,18 @@ const Star = ({ selected, onClick}) => (
   <FaStar color={selected ? "red" : "grey"} onClick={onClick} />
 );
 
-const RatingBar = ({ totalStars = 5, selectedStars, onSelect }) => {
+const RatingBar = ({ totalRatings = 5, selectedRatings = 0, onSelect }) => {
   return (
     <>
-      {Array.from({ length: totalStars }).map((_, index) => (
+      {Array.from({ length: totalRatings }).map((_, index) => (
         <Star
           key={index}
-          selected={selectedStars > index}
+          selected={selectedRatings > index}
           onClick={() => onSelect(index + 1)}
         />
       ))}
       <p>
-        {selectedStars} of {totalStars}
+        {selectedRatings} of {totalRatings}
       </p>
     </>
   );

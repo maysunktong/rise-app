@@ -8,9 +8,9 @@ const Tracker = () => {
 
   const onAddList = () => {
     if (text.trim() !== "") {
-      setList([...list, {text, waterCount}]);
+      setList([...list, { text, waterCount }]);
       setText("");
-      setWaterCount("")
+      setWaterCount();
     }
   };
 
@@ -23,11 +23,13 @@ const Tracker = () => {
   };
 
   return (
-    <div>
+    <>
       <ul>
-        {list.map(({text, waterCount}, index) => (
+        {list.map(({ text, waterCount }, index) => (
           <div>
-            <li key={index}>{text} ⭐ {waterCount}</li>
+            <li key={index}>
+              {text} ⭐ {waterCount}
+            </li>
             <button type="button" onClick={() => onDeleteItem(index)}>
               delete
             </button>
@@ -41,7 +43,11 @@ const Tracker = () => {
           onChange={(e) => setText(e.target.value)}
           placeholder="write something"
         />
-        <RatingBar totalStars={5} selectedStars={waterCount} onSelect={setWaterCount} />
+        <RatingBar
+          totalRatings={5}
+          selectedRatings={waterCount}
+          onSelect={setWaterCount}
+        />
       </div>
       <button onClick={onAddList} type="button">
         Add
@@ -49,7 +55,7 @@ const Tracker = () => {
       <button onClick={onClearList} type="button">
         Clear
       </button>
-    </div>
+    </>
   );
 };
 
