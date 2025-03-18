@@ -1,17 +1,17 @@
 import { FaStar } from "react-icons/fa";
 
-const Star = ({ selected, onSelect }) => (
-  <FaStar color={selected ? "red" : "grey"} onClick={onSelect} />
+const Star = ({ selected, onClick}) => (
+  <FaStar color={selected ? "red" : "grey"} onClick={onClick} />
 );
 
-const StarRating = ({ totalStars = 5, selectedStars = 0, onRate }) => {
+const RatingBar = ({ totalStars = 5, selectedStars, onSelect }) => {
   return (
     <>
       {Array.from({ length: totalStars }).map((_, index) => (
         <Star
           key={index}
           selected={selectedStars > index}
-          onSelect={() => onRate(index + 1)}
+          onClick={() => onSelect(index + 1)}
         />
       ))}
       <p>
@@ -21,4 +21,4 @@ const StarRating = ({ totalStars = 5, selectedStars = 0, onRate }) => {
   );
 };
 
-export default StarRating;
+export default RatingBar;

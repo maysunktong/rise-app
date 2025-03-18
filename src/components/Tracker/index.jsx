@@ -1,10 +1,10 @@
 import { useState } from "react";
-import StarRating from "../StarRating";
+import RatingBar from "../RatingBar";
 
 const Tracker = () => {
   const [list, setList] = useState([]);
   const [text, setText] = useState("");
-  const [waterCount, setWaterCount] = useState("");
+  const [waterCount, setWaterCount] = useState(0);
 
   const onAddList = () => {
     if (text.trim() !== "") {
@@ -41,7 +41,7 @@ const Tracker = () => {
           onChange={(e) => setText(e.target.value)}
           placeholder="write something"
         />
-        <StarRating totalStars={5} selectedStars={waterCount} onRate={setWaterCount} />
+        <RatingBar totalStars={5} selectedStars={waterCount} onSelect={setWaterCount} />
       </div>
       <button onClick={onAddList} type="button">
         Add
