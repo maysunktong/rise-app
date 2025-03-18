@@ -4,11 +4,13 @@ import StarRating from "../StarRating";
 const Tracker = () => {
   const [list, setList] = useState([]);
   const [text, setText] = useState("");
+  const [waterCount, setWaterCount] = useState("");
 
   const onAddList = () => {
     if (text.trim() !== "") {
-      setList([...list, text]);
+      setList([...list, {text, waterCount}]);
       setText("");
+      setWaterCount("")
     }
   };
 
@@ -23,9 +25,9 @@ const Tracker = () => {
   return (
     <div>
       <ul>
-        {list.map((text, index) => (
+        {list.map(({text, waterCount}, index) => (
           <div>
-            <li key={index}>{text}</li>
+            <li key={index}>{text} ⭐ {waterCount}</li>
             <button type="button" onClick={() => onDeleteItem(index)}>
               delete
             </button>
@@ -39,6 +41,7 @@ const Tracker = () => {
           onChange={(e) => setText(e.target.value)}
           placeholder="write something"
         />
+        <StarRating totalStars={5} selectedStars={waterCount} onRate={setWaterCount} />
       </div>
       <button onClick={onAddList} type="button">
         Add
@@ -46,7 +49,6 @@ const Tracker = () => {
       <button onClick={onClearList} type="button">
         Clear
       </button>
-      <StarRating />
     </div>
   );
 };
