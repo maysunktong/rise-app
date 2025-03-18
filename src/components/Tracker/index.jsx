@@ -1,12 +1,15 @@
 import { useState } from "react";
+import StarRating from "../StarRating";
 
 const Tracker = () => {
   const [list, setList] = useState([]);
   const [text, setText] = useState("");
 
-  const onAddText = () => {
-    setList([...list, text]);
-    setText("");
+  const onAddList = () => {
+    if (text.trim() !== "") {
+      setList([...list, text]);
+      setText("");
+    }
   };
 
   const onClearList = () => {
@@ -29,19 +32,23 @@ const Tracker = () => {
           </div>
         ))}
       </ul>
-      <input
-        type="text"
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-        placeholder="write something"
-      />
-      <button onClick={onAddText} type="button">
+      <div>
+        <input
+          type="text"
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+          placeholder="write something"
+        />
+      </div>
+      <button onClick={onAddList} type="button">
         Add
       </button>
       <button onClick={onClearList} type="button">
         Clear
       </button>
+      <StarRating />
     </div>
   );
 };
+
 export default Tracker;
