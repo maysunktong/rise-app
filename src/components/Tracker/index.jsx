@@ -2,6 +2,7 @@ import { useState } from "react";
 import { FaGlassWater } from "react-icons/fa6";
 import { PiCoffeeBeanFill } from "react-icons/pi";
 import RatingBar from "../RatingBar";
+import RatingSlider from '../RatingSlider';
 
 const Tracker = () => {
   const [list, setList] = useState([]);
@@ -82,10 +83,11 @@ const Tracker = () => {
           selectedRatings={coffeeCount}
           onSelect={setCoffeeCount}
           Icon={PiCoffeeBeanFill}
-          selectedColor="lightblue"
+          selectedColor="brown"
           defaultColor="gray"
         />
       </div>
+      <RatingSlider min={0} max={10000} step={1} defaultValue={0}  />
       <button onClick={onAddList} type="button">
         Add
       </button>
