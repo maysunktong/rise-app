@@ -30,11 +30,11 @@ const Tracker = () => {
   };
 
   return (
-    <>
+    <>  
       <ul>
         {list.map(({ text, waterCount, coffeeCount, stepCount }, index) => (
-          <div>
-            <li key={index}>
+          <ul key={index}>
+            <li >
               {text}
               <div>
                 <RatingBar
@@ -61,7 +61,7 @@ const Tracker = () => {
             <button type="button" onClick={() => onDeleteItem(index)}>
               delete
             </button>
-          </div>
+          </ul>
         ))}
       </ul>
       <div>
