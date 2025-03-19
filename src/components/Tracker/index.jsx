@@ -1,5 +1,6 @@
 import { useState } from "react";
 import RatingBar from "../RatingBar";
+import { FaGlassWater } from 'react-icons/fa6';
 
 const Tracker = () => {
   const [list, setList] = useState([]);
@@ -47,6 +48,7 @@ const Tracker = () => {
           totalRatings={5}
           selectedRatings={waterCount}
           onSelect={setWaterCount}
+          Icon={FaGlassWater}
         />
       </div>
       <button onClick={onAddList} type="button">
