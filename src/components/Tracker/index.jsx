@@ -2,20 +2,22 @@ import { useState } from "react";
 import { FaGlassWater } from "react-icons/fa6";
 import { PiCoffeeBeanFill } from "react-icons/pi";
 import RatingBar from "../RatingBar";
-import RatingSlider from '../RatingSlider';
+import RatingSlider from "../RatingSlider";
 
 const Tracker = () => {
   const [list, setList] = useState([]);
   const [text, setText] = useState("");
   const [waterCount, setWaterCount] = useState(0);
   const [coffeeCount, setCoffeeCount] = useState(0);
+  const [stepCount, setStepCount] = useState(0);
 
   const onAddList = () => {
     if (text.trim() !== "") {
-      setList([...list, { text, waterCount, coffeeCount }]);
+      setList([...list, { text, waterCount, coffeeCount, stepCount }]);
       setText("");
-      setWaterCount();
-      setCoffeeCount();
+      setWaterCount(0);
+      setCoffeeCount(0);
+      setStepCount(0);
     }
   };
 
@@ -30,7 +32,7 @@ const Tracker = () => {
   return (
     <>
       <ul>
-        {list.map(({ text, waterCount, coffeeCount }, index) => (
+        {list.map(({ text, waterCount, coffeeCount, stepCount }, index) => (
           <div>
             <li key={index}>
               {text}
@@ -43,7 +45,6 @@ const Tracker = () => {
                   selectedColor="lightblue"
                   defaultColor="gray"
                 />
-                <p>water count:</p>
               </div>
               <div>
                 <RatingBar
@@ -54,8 +55,8 @@ const Tracker = () => {
                   selectedColor="brown"
                   defaultColor="gray"
                 />
-                <p>coffee count:</p>
               </div>
+              <div>Steps: {stepCount}</div>
             </li>
             <button type="button" onClick={() => onDeleteItem(index)}>
               delete
@@ -87,7 +88,7 @@ const Tracker = () => {
           defaultColor="gray"
         />
       </div>
-      <RatingSlider min={0} max={10000} step={1} defaultValue={0}  />
+      <RatingSlider min={0} max={10000} step={1} value={stepCount} onChange={setStepCount} />
       <button onClick={onAddList} type="button">
         Add
       </button>

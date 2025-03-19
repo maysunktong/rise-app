@@ -1,3 +1,7 @@
+body {
+  background-color: rgb(151, 191, 151);
+}
+
 nav {
   cursor: pointer;
 }
