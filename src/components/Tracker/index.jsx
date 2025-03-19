@@ -1,17 +1,20 @@
 import { useState } from "react";
+import { FaGlassWater } from "react-icons/fa6";
+import { PiCoffeeBeanFill } from "react-icons/pi";
 import RatingBar from "../RatingBar";
-import { FaGlassWater } from 'react-icons/fa6';
 
 const Tracker = () => {
   const [list, setList] = useState([]);
   const [text, setText] = useState("");
   const [waterCount, setWaterCount] = useState(0);
+  const [coffeeCount, setCoffeeCount] = useState(0);
 
   const onAddList = () => {
     if (text.trim() !== "") {
-      setList([...list, { text, waterCount }]);
+      setList([...list, { text, waterCount, coffeeCount }]);
       setText("");
       setWaterCount();
+      setCoffeeCount();
     }
   };
 
@@ -26,10 +29,32 @@ const Tracker = () => {
   return (
     <>
       <ul>
-        {list.map(({ text, waterCount }, index) => (
+        {list.map(({ text, waterCount, coffeeCount }, index) => (
           <div>
             <li key={index}>
-              {text} ⭐ {waterCount}
+              {text}
+              <div>
+                <RatingBar
+                  totalRatings={5}
+                  selectedRatings={waterCount}
+                  onSelect={waterCount}
+                  Icon={FaGlassWater}
+                  selectedColor="lightblue"
+                  defaultColor="gray"
+                />
+                <p>water count:</p>
+              </div>
+              <div>
+                <RatingBar
+                  totalRatings={10}
+                  selectedRatings={coffeeCount}
+                  onSelect={coffeeCount}
+                  Icon={PiCoffeeBeanFill}
+                  selectedColor="brown"
+                  defaultColor="gray"
+                />
+                <p>coffee count:</p>
+              </div>
             </li>
             <button type="button" onClick={() => onDeleteItem(index)}>
               delete
@@ -49,6 +74,16 @@ const Tracker = () => {
           selectedRatings={waterCount}
           onSelect={setWaterCount}
           Icon={FaGlassWater}
+          selectedColor="lightblue"
+          defaultColor="gray"
+        />
+        <RatingBar
+          totalRatings={10}
+          selectedRatings={coffeeCount}
+          onSelect={setCoffeeCount}
+          Icon={PiCoffeeBeanFill}
+          selectedColor="lightblue"
+          defaultColor="gray"
         />
       </div>
       <button onClick={onAddList} type="button">
