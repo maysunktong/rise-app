@@ -2,7 +2,7 @@ import { useState } from "react";
 import Moods from "../../data/moods";
 import styles from "./moodpicker.module.css";
 
-const MoodPicker = ({selectedMood, setSelectedMood}) => {
+const MoodPicker = ({selectedMood = "How are you?", setSelectedMood}) => {
   const [isMoodPanelOpen, setIsMoodPanelOpen] = useState(false);
 
   return (

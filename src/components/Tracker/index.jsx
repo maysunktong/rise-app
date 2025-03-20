@@ -12,7 +12,7 @@ const Tracker = () => {
   const [coffeeCount, setCoffeeCount] = useState(0);
   const [stepCount, setStepCount] = useState(0);
 
-  const [selectedMood, setSelectedMood] = useState("How are you?");
+  const [selectedMood, setSelectedMood] = useState();
 
   const onAddList = () => {
     if (text.trim() !== "") {
