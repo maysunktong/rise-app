@@ -1,7 +1,37 @@
-body {
-  background-color: rgb(151, 191, 151);
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-nav {
-  cursor: pointer;
+html {
+  scroll-behavior: smooth;
+}
+
+:root {
+  --font-body: "Inter", sans-serif;
+  --color-primary: #0070f3;
+  --color-secondary: #1a1a1a;
+  --color-background: #f5f5f5;
+  --color-text: #333;
+}
+
+body {
+background-color: whitesmoke;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+.layout {
+  display: flex;
+}
+
+.currentPage {
+  height: auto;
 }

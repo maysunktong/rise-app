@@ -1,0 +1,5 @@
+nav {
+  cursor: pointer;
+  background-color: gray;
+  min-height: 100vh;
+}

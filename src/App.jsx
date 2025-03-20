@@ -5,10 +5,10 @@ function App() {
   const [currentPage, setCurrentPage] = useState(null);
 
   return (
-    <>
+    <div className="layout">
       <Navigation setCurrentPage={setCurrentPage} />
-      {currentPage}
-    </>
+      <section className="currentPage">{currentPage}</section>
+    </div>
   );
 }
 

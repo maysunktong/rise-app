@@ -2,6 +2,7 @@ import HealthTracker from "../../../pages/HealthTracker/index";
 import HireTrainers from "../../../pages/HireTrainers/index";
 import Homepage from "../../../pages/Homepage/index";
 import WorkoutRoom from "../../../pages/WorkoutRoom/index";
+import styles from "./nav.module.css"
 
 const Navigation = ({ setCurrentPage }) => {
   return (
