@@ -12,14 +12,14 @@ const Tracker = () => {
   const [waterCount, setWaterCount] = useState(0);
   const [coffeeCount, setCoffeeCount] = useState(0);
   const [stepCount, setStepCount] = useState(0);
-
+  const [sleepCount, setSleepCount] = useState(0);
   const [selectedMood, setSelectedMood] = useState();
 
   const onAddList = () => {
     if (text.trim() !== "") {
       setList([
         ...list,
-        { text, waterCount, coffeeCount, stepCount, selectedMood },
+        { text, waterCount, coffeeCount, stepCount, sleepCount, selectedMood },
       ]);
       setText("");
       setWaterCount(0);
@@ -45,7 +45,14 @@ const Tracker = () => {
       <ul>
         {list.map(
           (
-            { text, waterCount, coffeeCount, stepCount, selectedMood },
+            {
+              text,
+              waterCount,
+              coffeeCount,
+              stepCount,
+              sleepcount,
+              selectedMood,
+            },
             index
           ) => (
             <li key={index}>
@@ -74,6 +81,7 @@ const Tracker = () => {
                     defaultColor="gray"
                   />
                 </div>
+                <div>Sleep: {sleepCount} hrs</div>
                 <div>Steps: {stepCount}</div>
                 <div>I feel {selectedMood} today.</div>
               </div>
@@ -107,18 +115,25 @@ const Tracker = () => {
           selectedColor="brown"
           defaultColor="gray"
         />
+        <Slider
+          min={0}
+          max={12}
+          step={0.5}
+          value={sleepCount}
+          onChange={setSleepCount}
+        />
+        <Slider
+          min={0}
+          max={10000}
+          step={1}
+          value={stepCount}
+          onChange={setStepCount}
+        />
+        <MoodPicker
+          selectedMood={selectedMood}
+          setSelectedMood={setSelectedMood}
+        />
       </div>
-      <Slider
-        min={0}
-        max={10000}
-        step={1}
-        value={stepCount}
-        onChange={setStepCount}
-      />
-      <MoodPicker
-        selectedMood={selectedMood}
-        setSelectedMood={setSelectedMood}
-      />
       <button onClick={onAddList} type="button">
         Add
       </button>
