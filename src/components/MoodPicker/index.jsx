@@ -1,30 +1,34 @@
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import Moods from "../../data/moods";
+import styles from "./moodpicker.module.css";
 
-const moods = ["Happy", "Sad", "Excited", "Calm", "Angry", "Relaxed"];
-
-export default function MoodPicker() {
-  const [selectedMood, setSelectedMood] = useState("Pick a mood");
+const MoodPicker = ({selectedMood, setSelectedMood}) => {
+  const [isMoodPanelOpen, setIsMoodPanelOpen] = useState(false);
 
   return (
-    <div className="flex flex-col items-center gap-4 p-4">
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button variant="outline" className="w-40">
-            {selectedMood}
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent className="w-40">
-          {moods.map((mood) => (
-            <DropdownMenuItem key={mood} onClick={() => setSelectedMood(mood)}>
-              {mood}
-            </DropdownMenuItem>
-          ))}
-        </DropdownMenuContent>
-      </DropdownMenu>
+    <div className={styles.dropdown}>
+      <button type="button" onClick={() => setIsMoodPanelOpen(!isMoodPanelOpen)}>
+        {selectedMood}
+      </button>
+      {isMoodPanelOpen && (
+        <div className={styles.dropdownContent}>
+          <ul>
+            {Moods.map((mood, index) => (
+              <li
+                key={index}
+                onClick={() => {
+                  setSelectedMood(`${mood.icon} ${mood.name}`);
+                  setIsMoodPanelOpen(false);
+                }}
+              >
+                <p>{mood.icon} {mood.name}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
-}
+};
 
-// TODO: modify MoodPicker and build my own dropdown
+export default MoodPicker;

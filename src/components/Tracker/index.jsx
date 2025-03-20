@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { FaGlassWater } from "react-icons/fa6";
 import { PiCoffeeBeanFill } from "react-icons/pi";
+import MoodPicker from "../MoodPicker";
 import RatingBar from "../RatingBar";
-import RatingSlider from "../RatingSlider";
+import Slider from "../Slider";
 
 const Tracker = () => {
   const [list, setList] = useState([]);
@@ -11,13 +12,16 @@ const Tracker = () => {
   const [coffeeCount, setCoffeeCount] = useState(0);
   const [stepCount, setStepCount] = useState(0);
 
+  const [selectedMood, setSelectedMood] = useState("How are you?");
+
   const onAddList = () => {
     if (text.trim() !== "") {
-      setList([...list, { text, waterCount, coffeeCount, stepCount }]);
+      setList([...list, { text, waterCount, coffeeCount, stepCount, selectedMood }]);
       setText("");
       setWaterCount(0);
       setCoffeeCount(0);
       setStepCount(0);
+      setSelectedMood();
     }
   };
 
@@ -30,15 +34,15 @@ const Tracker = () => {
   };
 
   return (
-    <>  
+    <>
       <ul>
-        {list.map(({ text, waterCount, coffeeCount, stepCount }, index) => (
-          <ul key={index}>
-            <li >
+        {list.map(({ text, waterCount, coffeeCount, stepCount, selectedMood }, index) => (
+          <li key={index}>
+            <div>
               {text}
               <div>
                 <RatingBar
-                  totalRatings={5}
+                  totalRatings={10}
                   selectedRatings={waterCount}
                   onSelect={waterCount}
                   Icon={FaGlassWater}
@@ -57,11 +61,12 @@ const Tracker = () => {
                 />
               </div>
               <div>Steps: {stepCount}</div>
-            </li>
+              <div>I feel {selectedMood} today.</div>
+            </div>
             <button type="button" onClick={() => onDeleteItem(index)}>
               delete
             </button>
-          </ul>
+          </li>
         ))}
       </ul>
       <div>
@@ -72,7 +77,7 @@ const Tracker = () => {
           placeholder="write something"
         />
         <RatingBar
-          totalRatings={5}
+          totalRatings={10}
           selectedRatings={waterCount}
           onSelect={setWaterCount}
           Icon={FaGlassWater}
@@ -88,7 +93,17 @@ const Tracker = () => {
           defaultColor="gray"
         />
       </div>
-      <RatingSlider min={0} max={10000} step={1} value={stepCount} onChange={setStepCount} />
+      <Slider
+        min={0}
+        max={10000}
+        step={1}
+        value={stepCount}
+        onChange={setStepCount}
+      />
+      <MoodPicker
+        selectedMood={selectedMood}
+        setSelectedMood={setSelectedMood}
+      />
       <button onClick={onAddList} type="button">
         Add
       </button>

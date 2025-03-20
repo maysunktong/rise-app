@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from "./slider.module.css";
 
-const RatingSlider = ({ min = 0, max = 10000, step = 1, value, onChange }) => {
+const Slider = ({ min = 0, max = 10000, step = 1, value, onChange }) => {
   return (
     <>
       <input
@@ -22,6 +22,4 @@ const RatingSlider = ({ min = 0, max = 10000, step = 1, value, onChange }) => {
   );
 };
 
-export default RatingSlider;
-
-// TODO: change name to Slider
+export default Slider;
