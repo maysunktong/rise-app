@@ -1,3 +1,4 @@
+import { format } from "date-fns";
 import { useState } from "react";
 import { FaGlassWater } from "react-icons/fa6";
 import { PiCoffeeBeanFill } from "react-icons/pi";
@@ -16,7 +17,10 @@ const Tracker = () => {
 
   const onAddList = () => {
     if (text.trim() !== "") {
-      setList([...list, { text, waterCount, coffeeCount, stepCount, selectedMood }]);
+      setList([
+        ...list,
+        { text, waterCount, coffeeCount, stepCount, selectedMood },
+      ]);
       setText("");
       setWaterCount(0);
       setCoffeeCount(0);
@@ -33,41 +37,52 @@ const Tracker = () => {
     setList(list.filter((_, index) => index !== indexToRemove));
   };
 
+  const date = format(new Date(), "MMMM dd");
+  const time = format(new Date(), "HH:mm");
+
   return (
     <>
       <ul>
-        {list.map(({ text, waterCount, coffeeCount, stepCount, selectedMood }, index) => (
-          <li key={index}>
-            <div>
-              {text}
+        {list.map(
+          (
+            { text, waterCount, coffeeCount, stepCount, selectedMood },
+            index
+          ) => (
+            <li key={index}>
               <div>
-                <RatingBar
-                  totalRatings={10}
-                  selectedRatings={waterCount}
-                  onSelect={waterCount}
-                  Icon={FaGlassWater}
-                  selectedColor="lightblue"
-                  defaultColor="gray"
-                />
+                <p>Create at {date}</p>
+                <p>Time: {time}</p>
+                <p>{text}</p>
+
+                <div>
+                  <RatingBar
+                    totalRatings={10}
+                    selectedRatings={waterCount}
+                    onSelect={waterCount}
+                    Icon={FaGlassWater}
+                    selectedColor="lightblue"
+                    defaultColor="gray"
+                  />
+                </div>
+                <div>
+                  <RatingBar
+                    totalRatings={10}
+                    selectedRatings={coffeeCount}
+                    onSelect={coffeeCount}
+                    Icon={PiCoffeeBeanFill}
+                    selectedColor="brown"
+                    defaultColor="gray"
+                  />
+                </div>
+                <div>Steps: {stepCount}</div>
+                <div>I feel {selectedMood} today.</div>
               </div>
-              <div>
-                <RatingBar
-                  totalRatings={10}
-                  selectedRatings={coffeeCount}
-                  onSelect={coffeeCount}
-                  Icon={PiCoffeeBeanFill}
-                  selectedColor="brown"
-                  defaultColor="gray"
-                />
-              </div>
-              <div>Steps: {stepCount}</div>
-              <div>I feel {selectedMood} today.</div>
-            </div>
-            <button type="button" onClick={() => onDeleteItem(index)}>
-              delete
-            </button>
-          </li>
-        ))}
+              <button type="button" onClick={() => onDeleteItem(index)}>
+                delete
+              </button>
+            </li>
+          )
+        )}
       </ul>
       <div>
         <input
