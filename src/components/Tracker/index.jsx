@@ -1,5 +1,5 @@
 import { format } from "date-fns";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaGlassWater } from "react-icons/fa6";
 import { PiCoffeeBeanFill } from "react-icons/pi";
 import MoodPicker from "../MoodPicker";
@@ -13,28 +13,61 @@ const Tracker = () => {
   const [coffeeCount, setCoffeeCount] = useState(0);
   const [stepCount, setStepCount] = useState(0);
   const [sleepCount, setSleepCount] = useState(0);
-  const [selectedMood, setSelectedMood] = useState();
+  const [selectedMood, setSelectedMood] = useState("How are you?");
+
+  useEffect(() => {
+    const storedList = JSON.parse(localStorage.getItem("trackerList")) || [];
+    setList(storedList);
+
+    if (storedList.length > 0) {
+      const lastItem = storedList[storedList.length - 1];
+      setWaterCount(lastItem.waterCount || 0);
+      setCoffeeCount(lastItem.coffeeCount || 0);
+      setStepCount(lastItem.stepCount || 0);
+      setSleepCount(lastItem.sleepCount || 0);
+      setSelectedMood(lastItem.selectedMood || "");
+    }
+  }, []);
+
+  useEffect(() => {
+    if (list.length > 0) {
+      localStorage.setItem("trackerList", JSON.stringify(list));
+    }
+  }, [list]);
 
   const onAddList = () => {
     if (text.trim() !== "") {
-      setList([
-        ...list,
-        { text, waterCount, coffeeCount, stepCount, sleepCount, selectedMood },
-      ]);
+      const newList = {
+        text,
+        waterCount,
+        coffeeCount,
+        stepCount,
+        sleepCount,
+        selectedMood,
+      };
+
+      const updatedList = [ newList, ...list];
+      setList(updatedList);
+      localStorage.setItem("trackerList", JSON.stringify(updatedList));
+
       setText("");
       setWaterCount(0);
       setCoffeeCount(0);
       setStepCount(0);
-      setSelectedMood();
+      setSleepCount(0);
+      setSelectedMood("How are you?");
     }
   };
 
   const onClearList = () => {
     setList([]);
+    localStorage.removeItem("trackerList");
   };
 
   const onDeleteItem = (indexToRemove) => {
-    setList(list.filter((_, index) => index !== indexToRemove));
+    const updatedList = list.filter((_, index) => index !== indexToRemove);
+    setList(updatedList);
+    localStorage.setItem("trackerList", JSON.stringify(updatedList));
   };
 
   const date = format(new Date(), "MMMM dd");
@@ -50,22 +83,20 @@ const Tracker = () => {
               waterCount,
               coffeeCount,
               stepCount,
-              sleepcount,
+              sleepCount,
               selectedMood,
             },
             index
           ) => (
             <li key={index}>
               <div>
-                <p>Create at {date}</p>
+                <p>Created on {date}</p>
                 <p>Time: {time}</p>
                 <p>{text}</p>
-
                 <div>
                   <RatingBar
                     totalRatings={10}
                     selectedRatings={waterCount}
-                    onSelect={waterCount}
                     Icon={FaGlassWater}
                     selectedColor="lightblue"
                     defaultColor="gray"
@@ -75,7 +106,6 @@ const Tracker = () => {
                   <RatingBar
                     totalRatings={10}
                     selectedRatings={coffeeCount}
-                    onSelect={coffeeCount}
                     Icon={PiCoffeeBeanFill}
                     selectedColor="brown"
                     defaultColor="gray"
@@ -86,7 +116,7 @@ const Tracker = () => {
                 <div>I feel {selectedMood} today.</div>
               </div>
               <button type="button" onClick={() => onDeleteItem(index)}>
-                delete
+                Delete
               </button>
             </li>
           )
@@ -97,7 +127,7 @@ const Tracker = () => {
           type="text"
           value={text}
           onChange={(e) => setText(e.target.value)}
-          placeholder="write something"
+          placeholder="Write something"
         />
         <RatingBar
           totalRatings={10}
