@@ -1,19 +1,13 @@
-import styles from "./home.module.css"
+import HealthWidget from "../../components/HealthWidget";
 
 const Homepage = () => {
-return (
- <div className={styles.homeContainer}>
-  <div>water</div>
-  <div>steps</div>
-  <div>mood</div>
-  <div>sleep</div>
-  <div>coffee</div>
-  <div>bmi</div>
- </div>
-)
-}
+  return (
+    <div>
+      <HealthWidget />
+    </div>
+  );
+};
 export default Homepage;
-
 
 // TODO: add folders in directory - Layout and UI
 // TODO: 1. navbar to the left, dashboard

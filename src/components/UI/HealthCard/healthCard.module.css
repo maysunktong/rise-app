@@ -1,0 +1,6 @@
+.healthCard {
+  border: solid 1px gray;
+  color: gray;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
