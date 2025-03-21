@@ -3,11 +3,11 @@ import WidgetCard from "../UI/WidgetCard";
 import styles from "./healthWidget.module.css";
 
 const HealthWidget = () => {
-  const [waterCount, setWaterCount] = useState(0);
-  const [coffeeCount, setCoffeeCount] = useState(0);
-  const [stepCount, setStepCount] = useState(0);
-  const [sleepCount, setSleepCount] = useState(0);
-  const [selectedMood, setSelectedMood] = useState("How are you?");
+  const [waterCount, setWaterCount] = useState("--");
+  const [coffeeCount, setCoffeeCount] = useState("--");
+  const [stepCount, setStepCount] = useState("--");
+  const [sleepCount, setSleepCount] = useState("--");
+  const [selectedMood, setSelectedMood] = useState("--");
 
   useEffect(() => {
     const storedData = JSON.parse(localStorage.getItem("trackerList")) || [];

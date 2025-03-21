@@ -46,7 +46,7 @@ const Tracker = () => {
         selectedMood,
       };
 
-      const updatedList = [ newList, ...list];
+      const updatedList = [newList, ...list];
       setList(updatedList);
       localStorage.setItem("trackerList", JSON.stringify(updatedList));
 
@@ -60,6 +60,12 @@ const Tracker = () => {
   };
 
   const onClearList = () => {
+    setText("");
+    setWaterCount(0);
+    setCoffeeCount(0);
+    setStepCount(0);
+    setSleepCount(0);
+    setSelectedMood("How are you?");
     setList([]);
     localStorage.removeItem("trackerList");
   };
