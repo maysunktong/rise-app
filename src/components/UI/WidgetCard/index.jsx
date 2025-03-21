@@ -4,11 +4,22 @@ import styles from "./healthCard.module.css";
 const WidgetCard = ({ value, category }) => {
   const widget = WidgetData.find((item) => item.name === category);
 
+  const unitMap = {
+    coffee: "cups",
+    water: "glasses",
+    sleep: "hrs",
+    steps: "steps",
+  };
+
   return (
     <div className={styles.widgetCard}>
-      <div>
-        <h3>{category}</h3>
-        <p>{value}</p>
+      <div className={styles.widgetStats}>
+        <p className={styles.widgetHeader}>
+          {category.charAt(0).toUpperCase() + category.slice(1)}
+        </p>
+        <p className={styles.widgetValue}>
+          {value} {unitMap[category] || ""}
+        </p>
       </div>
       <div>
         {widget && (
