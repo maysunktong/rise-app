@@ -1,8 +1,10 @@
 import { useState } from "react";
 import Navigation from "./components/Layout/Navigation";
+import Homepage from './pages/homepage';
+
 import "./index.css";
 function App() {
-  const [currentPage, setCurrentPage] = useState(null);
+  const [currentPage, setCurrentPage] = useState(<Homepage />);
 
   return (
     <div className="layout">

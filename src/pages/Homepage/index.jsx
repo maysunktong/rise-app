@@ -1,6 +1,15 @@
+import styles from "./home.module.css"
+
 const Homepage = () => {
 return (
- <p>homepage</p>
+ <div className={styles.homeContainer}>
+  <div>water</div>
+  <div>steps</div>
+  <div>mood</div>
+  <div>sleep</div>
+  <div>coffee</div>
+  <div>bmi</div>
+ </div>
 )
 }
 export default Homepage;
