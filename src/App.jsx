@@ -1,6 +1,7 @@
 import { useState } from "react";
+import Footer from "./components/Layout/Footer";
 import Navigation from "./components/Layout/Navigation";
-import Homepage from './pages/homepage';
+import Homepage from "./pages/homepage";
 
 import "./index.css";
 function App() {
@@ -9,7 +10,10 @@ function App() {
   return (
     <div className="layout">
       <Navigation setCurrentPage={setCurrentPage} />
-      <section className="currentPage">{currentPage}</section>
+      <div>
+        <section className="currentPage">{currentPage}</section>
+        <Footer />
+      </div>
     </div>
   );
 }
