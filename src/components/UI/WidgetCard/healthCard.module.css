@@ -1,5 +1,4 @@
 .widgetCard {
-  border: solid 3px #e9eaec;
   color: gray;
   display: grid;
   grid-template-columns: 3fr 1fr;
@@ -7,6 +6,7 @@
   border-radius: 32px;
   width: 100%;
   height: 100%;
+  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
 }
 
 .widgetImageContainer {

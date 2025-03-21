@@ -34,6 +34,7 @@ li {
 
 .layout {
   display: flex;
+  padding: 1.5rem;
 }
 
 .contentContainer {
