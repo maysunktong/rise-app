@@ -23,11 +23,12 @@ const HealthWidget = () => {
 
   return (
     <div className={styles.healthWidget}>
+      <WidgetCard value={stepCount} category={"steps"} />
       <WidgetCard value={sleepCount} category={"sleep"} />
       <WidgetCard value={coffeeCount} category={"coffee"} />
-      <WidgetCard value={stepCount} category={"steps"} />
       <WidgetCard value={selectedMood} category={"mood"} />
       <WidgetCard value={waterCount} category={"water"} />
+      <WidgetCard value={waterCount} category={"bmi"} />
     </div>
   );
 };

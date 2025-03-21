@@ -1,6 +1,42 @@
 .widgetCard {
-  border: solid 1px gray;
+  border: solid 3px rgb(223, 223, 223);
   color: gray;
   display: grid;
   grid-template-columns: 2fr 1fr;
+  padding: 1rem;
+  border-radius: 18px;
+}
+
+.widgetImageContainer {
+  width: 150px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 12px;
+}
+
+.sleep {
+  background-color: #d0f4de;
+}
+
+.bmi {
+  background-color: #a9def9;
+}
+
+.mood {
+  background-color: #ffd6ff;
+}
+
+.steps {
+  background-color: #ffc971;
+}
+
+.water {
+  background-color: #90e0ef;
+}
+
+.coffee {
+  background-color: #ddbea9;
 }
