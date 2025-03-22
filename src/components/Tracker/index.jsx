@@ -1,5 +1,5 @@
 import { format } from "date-fns";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { FaGlassWater } from "react-icons/fa6";
 import { PiCoffeeBeanFill } from "react-icons/pi";
 import MoodPicker from "../MoodPicker";
@@ -18,15 +18,6 @@ const Tracker = () => {
   useEffect(() => {
     const storedList = JSON.parse(localStorage.getItem("trackerList")) || [];
     setList(storedList);
-
-    if (storedList.length > 0) {
-      const lastItem = storedList[storedList.length - 1];
-      setWaterCount(lastItem.waterCount || 0);
-      setCoffeeCount(lastItem.coffeeCount || 0);
-      setStepCount(lastItem.stepCount || 0);
-      setSleepCount(lastItem.sleepCount || 0);
-      setSelectedMood(lastItem.selectedMood || "");
-    }
   }, []);
 
   useEffect(() => {
@@ -45,17 +36,16 @@ const Tracker = () => {
         sleepCount,
         selectedMood,
       };
-
-      const updatedList = [newList, ...list];
-      setList(updatedList);
-      localStorage.setItem("trackerList", JSON.stringify(updatedList));
-
       setText("");
       setWaterCount(0);
       setCoffeeCount(0);
       setStepCount(0);
       setSleepCount(0);
       setSelectedMood("How are you?");
+
+      const updatedList = [newList, ...list];
+      setList(updatedList);
+      localStorage.setItem("trackerList", JSON.stringify(updatedList));
     }
   };
 
@@ -128,7 +118,7 @@ const Tracker = () => {
           )
         )}
       </ul>
-      <div>
+      <div className="form">
         <input
           type="text"
           value={text}
