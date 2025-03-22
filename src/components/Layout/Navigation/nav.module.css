@@ -1,7 +1,45 @@
+.navContainer {
+  width: 450px;
+  padding: 0 2rem;
+}
+
 .navDesktop {
-  min-height: 100vh;
+  height: 30vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 .navDesktop li {
   cursor: pointer;
+  font-size: 1.5rem;
+  font-weight: 400;
+  height: 4rem;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 1rem;
+  border-radius: 18px;
+  padding: 2rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.menuHeader {
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+.active {
+  background-color: #2a9d8f;
+}
+
+.navDesktop .active {
+  color: white;
+}
+
+.logoContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

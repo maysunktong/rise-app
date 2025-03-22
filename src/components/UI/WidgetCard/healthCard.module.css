@@ -1,5 +1,5 @@
 .widgetCard {
-  color: gray;
+  color: #8b8c89;
   display: grid;
   grid-template-columns: 3fr 1fr;
   padding: 2rem;
@@ -63,4 +63,8 @@
 
 .coffee {
   background-color: #ddbea9;
+}
+
+.clicked {
+  background-color: orange;
 }
