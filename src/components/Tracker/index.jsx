@@ -2,9 +2,9 @@ import { format } from "date-fns";
 import { useEffect, useState } from "react";
 import { FaGlassWater } from "react-icons/fa6";
 import { PiCoffeeBeanFill } from "react-icons/pi";
-import MoodPicker from "../MoodPicker";
-import RatingBar from "../RatingBar";
-import Slider from "../Slider";
+import MoodPicker from "../UI/MoodPicker"
+import RatingBar from "../UI/RatingBar";
+import Slider from "../UI/Slider";
 
 const Tracker = () => {
   const [list, setList] = useState([]);
@@ -71,6 +71,54 @@ const Tracker = () => {
 
   return (
     <>
+      <div className="form">
+        <input
+          type="text"
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+          placeholder="Write something"
+        />
+        <RatingBar
+          totalRatings={10}
+          selectedRatings={waterCount}
+          onSelect={setWaterCount}
+          Icon={FaGlassWater}
+          selectedColor="lightblue"
+          defaultColor="gray"
+        />
+        <RatingBar
+          totalRatings={10}
+          selectedRatings={coffeeCount}
+          onSelect={setCoffeeCount}
+          Icon={PiCoffeeBeanFill}
+          selectedColor="brown"
+          defaultColor="gray"
+        />
+        <Slider
+          min={0}
+          max={12}
+          step={0.5}
+          value={sleepCount}
+          onChange={setSleepCount}
+        />
+        <Slider
+          min={0}
+          max={10000}
+          step={1}
+          value={stepCount}
+          onChange={setStepCount}
+        />
+        <MoodPicker
+          selectedMood={selectedMood}
+          setSelectedMood={setSelectedMood}
+        />
+        <button onClick={onAddList} type="button">
+          Add
+        </button>
+        <button onClick={onClearList} type="button">
+          Clear
+        </button>
+      </div>
       <ul>
         {list.map(
           (
@@ -118,54 +166,6 @@ const Tracker = () => {
           )
         )}
       </ul>
-      <div className="form">
-        <input
-          type="text"
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-          placeholder="Write something"
-        />
-        <RatingBar
-          totalRatings={10}
-          selectedRatings={waterCount}
-          onSelect={setWaterCount}
-          Icon={FaGlassWater}
-          selectedColor="lightblue"
-          defaultColor="gray"
-        />
-        <RatingBar
-          totalRatings={10}
-          selectedRatings={coffeeCount}
-          onSelect={setCoffeeCount}
-          Icon={PiCoffeeBeanFill}
-          selectedColor="brown"
-          defaultColor="gray"
-        />
-        <Slider
-          min={0}
-          max={12}
-          step={0.5}
-          value={sleepCount}
-          onChange={setSleepCount}
-        />
-        <Slider
-          min={0}
-          max={10000}
-          step={1}
-          value={stepCount}
-          onChange={setStepCount}
-        />
-        <MoodPicker
-          selectedMood={selectedMood}
-          setSelectedMood={setSelectedMood}
-        />
-      </div>
-      <button onClick={onAddList} type="button">
-        Add
-      </button>
-      <button onClick={onClearList} type="button">
-        Clear
-      </button>
     </>
   );
 };

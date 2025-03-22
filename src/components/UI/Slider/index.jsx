@@ -1,4 +1,3 @@
-import { useState } from "react";
 import styles from "./slider.module.css";
 
 const Slider = ({ min = 0, max = 10000, step = 1, value, onChange }) => {

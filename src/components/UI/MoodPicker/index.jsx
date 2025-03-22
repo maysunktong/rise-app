@@ -1,13 +1,16 @@
 import { useState } from "react";
-import Moods from "../../data/moods";
-import styles from "./moodpicker.module.css";
+import Moods from "../../../data/moods"
+import styles from "./moodpicker.module.css"
 
-const MoodPicker = ({selectedMood = "How are you?", setSelectedMood}) => {
+const MoodPicker = ({ selectedMood = "How are you?", setSelectedMood }) => {
   const [isMoodPanelOpen, setIsMoodPanelOpen] = useState(false);
 
   return (
     <div className={styles.dropdown}>
-      <button type="button" onClick={() => setIsMoodPanelOpen(!isMoodPanelOpen)}>
+      <button
+        type="button"
+        onClick={() => setIsMoodPanelOpen(!isMoodPanelOpen)}
+      >
         {selectedMood}
       </button>
       {isMoodPanelOpen && (
@@ -21,7 +24,9 @@ const MoodPicker = ({selectedMood = "How are you?", setSelectedMood}) => {
                   setIsMoodPanelOpen(false);
                 }}
               >
-                <p>{mood.icon} {mood.name}</p>
+                <p>
+                  {mood.icon} {mood.name}
+                </p>
               </li>
             ))}
           </ul>
